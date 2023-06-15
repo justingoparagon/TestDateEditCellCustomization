@@ -11,6 +11,19 @@
         <ViewModels:MainViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <dxe:DateEdit/>
+        <dxe:DateEdit HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+            <dxe:DateEdit.PopupContentTemplate>
+                <ControlTemplate>
+                    <dxe:DateNavigator IsMultiSelect="False" SpecialDates="{Binding RelativeSource={RelativeSource Self}, Path=(dxe:BaseEdit.OwnerEdit).DataContext.Dates}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxmvvm:EventToCommand EventName="RequestCellAppearance" Command="{Binding RequestCellAppearanceCommand}" PassEventArgsToCommand="True"/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxe:DateNavigator.StyleSettings>
+                            <dxe:DateNavigatorOutlookStyleSettings />
+                        </dxe:DateNavigator.StyleSettings>
+                    </dxe:DateNavigator>
+                </ControlTemplate>
+            </dxe:DateEdit.PopupContentTemplate>
+        </dxe:DateEdit>
     </Grid>
 </UserControl>
